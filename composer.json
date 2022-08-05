@@ -27,7 +27,7 @@
         "friendsofphp/php-cs-fixer": "^3.0",
         "phpunit/phpunit": "^9.4",
         "hyperf/di": "^2.2",
-        "hyperf/utils": "^3.0",
+        "hyperf/utils": "^2.0",
         "hyperf/config": "*",
         "hyperf/ide-helper": "v2.2.*"
     },
