@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+use Hyperf\Di\Container;
+use Hyperf\Di\Definition\DefinitionSourceFactory;
+use Hyperf\Utils\ApplicationContext;
+
+! defined('BASE_PATH') && define('BASE_PATH', dirname(__DIR__, 1));
+
+$container = new Container((new DefinitionSourceFactory(true))());
+
+ApplicationContext::setContainer($container);

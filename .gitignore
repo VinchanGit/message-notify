@@ -1,0 +1,10 @@
+!.gitignore
+!.gitattributes
+*.DS_Store
+*.idea
+*.svn
+*.git
+composer.lock
+*.cache
+vendor
+config
