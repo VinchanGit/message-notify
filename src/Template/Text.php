@@ -35,6 +35,18 @@ class Text extends AbstractTemplate
         ];
     }
 
+    public function wechatBody(): array
+    {
+        return [
+            'msgtype' => 'text',
+            'text' => [
+                'content' => $this->getText(),
+                'mentioned_list' => in_array('all', $this->getAt()) ? [] : [$this->getAt()],
+                'mentioned_mobile_list' => in_array('all', $this->getAt()) ? ['@all'] : [$this->getAt()],
+            ],
+        ];
+    }
+
     private function getFeiShuAt(): string
     {
         if ($this->isAtAll()) {

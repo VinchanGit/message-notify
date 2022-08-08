@@ -41,6 +41,18 @@ class Markdown extends AbstractTemplate
         ];
     }
 
+    public function wechatBody(): array
+    {
+        return [
+            'msgtype' => 'markdown',
+            'markdown' => [
+                'content' => $this->getTitle() . $this->getText(),
+                'mentioned_list' => in_array('all', $this->getAt()) ? [] : [$this->getAt()],
+                'mentioned_mobile_list' => in_array('all', $this->getAt()) ? ['@all'] : [$this->getAt()],
+            ],
+        ];
+    }
+
     private function getFeiShuText(): array
     {
         $text = is_array($this->getText()) ? $this->getText() : json_decode($this->getText(), true) ?? [
