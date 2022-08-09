@@ -22,7 +22,7 @@ class WechatChannel extends AbstractChannel
         $request = $client->post('', $option);
         $result = json_decode($request->getBody()->getContents(), true);
 
-        if (empty($result['errcode']) != 0) {
+        if ($result['errcode'] !== 0) {
             throw new MessageNotificationException($result['errmsg']);
         }
 
