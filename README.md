@@ -42,3 +42,7 @@ Notify::make()->setChannel(Channel::class)
 ->setTitle('标题')->setText('内容')->setAt(['all'])->setPipeline('info')
 ->send();
 ```
+
+## 协议
+
+MIT 许可证（MIT）。有关更多信息，请参见[协议文件](LICENSE)。
