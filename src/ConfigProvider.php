@@ -12,7 +12,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                MessageNotifyInterface::class => Notify::class,
+                MessageNotifyInterface::class => Client::class,
             ],
             'annotations' => [
                 'scan' => [
