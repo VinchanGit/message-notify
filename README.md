@@ -28,20 +28,26 @@ hyperf vendor:publish vinchan/message-notify
 
 ## 使用
 ```php
-Notify::make()->setChannel(Channel::class)
-->setTemplate(Template::class)->setParameter(Parameter::class)
-->setAt(['all'])
-->send();
-```
-
-
-## 模拟使用
-```php
-Notify::make()->setChannel(Channel::class)
-->setTemplate(Template::class)
+Notify::make()->setChannel(DingTalkChannel::class)
+->setTemplate(Text::class)
 ->setTitle('标题')->setText('内容')->setAt(['all'])->setPipeline('info')
 ->send();
 ```
+
+## 通道
+
+| 通道名称  | 命名空间                                   | 支持格式          |
+|-------|----------------------------------------|---------------|
+| 钉钉群   | \MessageNotify\Channel\DingTalkChannel | Text、Markdown |
+| 飞书群   | \MessageNotify\Channel\FeiShuChannel   | Text、Markdown |
+| 企业微信群 | \MessageNotify\Channel\WechatChannel   | Text、Markdown |
+
+## 格式
+
+| 格式名称     | 命名空间                             |
+|----------|----------------------------------|
+| Text     | \MessageNotify\Template\Text     |
+| Markdown | \MessageNotify\Template\Markdown |
 
 ## 协议
 
