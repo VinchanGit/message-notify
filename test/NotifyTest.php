@@ -28,11 +28,12 @@ class NotifyTest extends TestCase
         $markdown = new Markdown();
         $text = new Text();
 
-        $notify = Notify::make()->setChannel($wechatChannel)
+        $notify = Notify::make()->setChannel(DingTalkChannel::class)
             ->setAt(['all'])
-            ->setTitle('标题')->setText('内容')
+            ->setTitle('标题')
+            ->setText('测试')
             ->setPipeline(MessageNotifyInterface::INFO)
-            ->setTemplate($text)
+            ->setTemplate(Markdown::class)
             ->send();
 
         $this->assertEquals($notify, true);

@@ -2,13 +2,17 @@
 
 declare(strict_types=1);
 
+use MessageNotify\Channel\DingTalkChannel;
+use MessageNotify\Channel\FeiShuChannel;
+use MessageNotify\Channel\MailChannel;
+use MessageNotify\Channel\WechatChannel;
 use MessageNotify\Contracts\MessageNotifyInterface;
 
 return [
     'default' => env('NOTIFY_DEFAULT_CHANNEL', 'mail'),
     'channels' => [
         // 钉钉群机器人
-        \MessageNotify\Channel\DingTalkChannel::class => [
+        DingTalkChannel::class => [
             'default' => MessageNotifyInterface::INFO,
             'pipeline' => [
                 // 业务信息告警群
@@ -27,7 +31,7 @@ return [
         ],
 
         // 飞书群机器人
-        \MessageNotify\Channel\FeiShuChannel::class => [
+        FeiShuChannel::class => [
             'default' => MessageNotifyInterface::INFO,
             'pipeline' => [
                 'info' => [
@@ -39,7 +43,7 @@ return [
         ],
 
         // 邮件
-        \MessageNotify\Channel\MailChannel::class => [
+        MailChannel::class => [
             'default' => MessageNotifyInterface::INFO,
             'pipeline' => [
                 'info' => [
@@ -51,7 +55,7 @@ return [
         ],
 
         // 企业微信群机器人
-        \MessageNotify\Channel\WechatChannel::class => [
+        WechatChannel::class => [
             'default' => MessageNotifyInterface::INFO,
             'pipeline' => [
                 'info' => [

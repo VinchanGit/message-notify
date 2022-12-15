@@ -51,14 +51,22 @@ class Client
         return $this->text;
     }
 
-    public function setChannel(AbstractChannel $channel): Client
+    public function setChannel($channel = null): Client
     {
+        if (! $channel instanceof AbstractChannel) {
+            $channel = make($channel);
+        }
+
         $this->channel = $channel;
         return $this;
     }
 
-    public function setTemplate(AbstractTemplate $template): Client
+    public function setTemplate($template = ''): Client
     {
+        if (! $template instanceof AbstractChannel) {
+            $template = make($template);
+        }
+
         $this->template = $template;
         return $this;
     }
@@ -68,9 +76,9 @@ class Client
         return $this->pipeline;
     }
 
-    public function setPipeline(string $pipeline): Client
+    public function setPipeline(string $pipeline = ''): Client
     {
-        $this->pipeline = $pipeline;
+        $this->pipeline = $pipeline ?? MessageNotifyInterface::INFO;
         return $this;
     }
 
