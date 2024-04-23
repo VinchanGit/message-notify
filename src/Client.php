@@ -9,6 +9,7 @@ use MessageNotify\Contracts\MessageNotifyInterface;
 use MessageNotify\Exceptions\MessageNotificationException;
 use MessageNotify\Template\AbstractTemplate;
 use MessageNotify\Template\Text;
+use function Hyperf\Support\make;
 
 class Client
 {

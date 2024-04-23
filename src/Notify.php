@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace MessageNotify;
 
-use Hyperf\Utils\ApplicationContext;
+use Hyperf\Context\ApplicationContext;
+
+use function Hyperf\Support\make;
 
 class Notify
 {

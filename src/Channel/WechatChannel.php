@@ -6,8 +6,10 @@ namespace MessageNotify\Channel;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use Hyperf\Context\ApplicationContext;
 use MessageNotify\Exceptions\MessageNotificationException;
 use MessageNotify\Template\AbstractTemplate;
+use function Hyperf\Support\make;
 
 class WechatChannel extends AbstractChannel
 {
@@ -35,7 +37,7 @@ class WechatChannel extends AbstractChannel
 
         $uri['base_uri'] = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=' . $config['token'];
 
-        if (class_exists(\Hyperf\Utils\ApplicationContext::class)) {
+        if (class_exists(ApplicationContext::class)) {
             return make(Client::class, [$uri]);
         }
 

@@ -7,8 +7,10 @@ namespace MessageNotify\Channel;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
+use Hyperf\Context\ApplicationContext;
 use MessageNotify\Exceptions\MessageNotificationException;
 use MessageNotify\Template\AbstractTemplate;
+use function Hyperf\Support\make;
 
 class FeiShuChannel extends AbstractChannel
 {
@@ -46,7 +48,7 @@ class FeiShuChannel extends AbstractChannel
 
         $uri['base_uri'] = 'https://open.feishu.cn/open-apis/bot/v2/hook/' . $config['token'];
 
-        if (class_exists(\Hyperf\Utils\ApplicationContext::class)) {
+        if (class_exists(ApplicationContext::class)) {
             return make(Client::class, [$uri]);
         }
 
