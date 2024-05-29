@@ -24,6 +24,9 @@ class Client
 
     protected string $text = '';
 
+    protected string $to='';
+    protected string $body='';
+    protected string $acc='';
     private string $errorMessage;
 
     public function getChannel(): AbstractChannel
@@ -45,12 +48,23 @@ class Client
     {
         return $this->title;
     }
+    public function getTo(): string
+    {
+        return $this->to;
+    }
 
     public function getText(): string
     {
         return $this->text;
     }
-
+    public function getBody(): string
+    {
+        return $this->body;
+    }
+    public function getAcc(): string
+    {
+        return $this->acc;
+    }
     public function setChannel($channel = null): Client
     {
         if (! $channel instanceof AbstractChannel) {
@@ -93,6 +107,11 @@ class Client
         $this->title = $title;
         return $this;
     }
+    public function setBody(string $body = ''): Client
+    {
+        $this->body = $body;
+        return $this;
+    }
 
     public function setText(string $text = ''): Client
     {
@@ -100,11 +119,26 @@ class Client
         return $this;
     }
 
+    public function setTo(string $to = ''): Client
+    {
+        $this->to = $to;
+        return $this;
+    }
+    public function setAcc(string $acc = ''): Client
+    {
+        $this->acc = $acc;
+        return $this;
+    }
     public function send(): bool
     {
         try {
-            $template = $this->getTemplate()->setAt($this->getAt())
-                ->setTitle($this->getTitle())->setText($this->getText())
+            $template = $this->getTemplate()
+                ->setAt($this->getAt())
+                ->setTitle($this->getTitle())
+                ->setText($this->getText())
+                ->setTo($this->getTo())
+                ->setBody($this->getBody())
+                ->setAcc($this->getAcc())
                 ->setPipeline($this->getPipeline());
 
             $this->getChannel()->send($template);
