@@ -10,12 +10,14 @@ use GuzzleHttp\RequestOptions;
 use Hyperf\Context\ApplicationContext;
 use MessageNotify\Exceptions\MessageNotificationException;
 use MessageNotify\Template\AbstractTemplate;
+
 use function Hyperf\Support\make;
 
 class DingTalkChannel extends AbstractChannel
 {
     /**
      * @throws GuzzleException
+     * @throws \JsonException
      */
     public function send(AbstractTemplate $template): bool
     {
@@ -28,7 +30,7 @@ class DingTalkChannel extends AbstractChannel
             RequestOptions::JSON => $template->dingTalkBody(),
         ];
         $request = $client->post('', $option);
-        $result = json_decode($request->getBody()->getContents(), true);
+        $result = json_decode($request->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
         if ($result['errcode'] !== 0) {
             throw new MessageNotificationException($result['errmsg']);
