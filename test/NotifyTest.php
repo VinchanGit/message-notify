@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  */
 class NotifyTest extends TestCase
 {
-    public function testCase()
+    public function testCase(): void
     {
         $dingTalkChannel = new DingTalkChannel();
         $feiShuChannel = new FeiShuChannel();
@@ -36,6 +36,6 @@ class NotifyTest extends TestCase
             ->setTemplate(Markdown::class)
             ->send();
 
-        $this->assertEquals($notify, true);
+        $this->assertTrue($notify);
     }
 }

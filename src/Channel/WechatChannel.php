@@ -5,14 +5,20 @@ declare(strict_types=1);
 namespace MessageNotify\Channel;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Hyperf\Context\ApplicationContext;
 use MessageNotify\Exceptions\MessageNotificationException;
 use MessageNotify\Template\AbstractTemplate;
+
 use function Hyperf\Support\make;
 
 class WechatChannel extends AbstractChannel
 {
+    /**
+     * @throws GuzzleException
+     * @throws \JsonException
+     */
     public function send(AbstractTemplate $template): bool
     {
         $client = $this->getClient($template->getPipeline());
@@ -22,7 +28,7 @@ class WechatChannel extends AbstractChannel
             RequestOptions::JSON => $template->wechatBody(),
         ];
         $request = $client->post('', $option);
-        $result = json_decode($request->getBody()->getContents(), true);
+        $result = json_decode($request->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
         if ($result['errcode'] !== 0) {
             throw new MessageNotificationException($result['errmsg']);

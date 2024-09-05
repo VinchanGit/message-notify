@@ -9,6 +9,7 @@ use MessageNotify\Contracts\MessageNotifyInterface;
 use MessageNotify\Exceptions\MessageNotificationException;
 use MessageNotify\Template\AbstractTemplate;
 use MessageNotify\Template\Text;
+
 use function Hyperf\Support\make;
 
 class Client
@@ -101,6 +102,11 @@ class Client
         return $this;
     }
 
+    /**
+     * @Created By: coderzhao
+     * @Created At: 2024/9/5 下午2:19
+     * @Desc:send
+     */
     public function send(): bool
     {
         try {
@@ -110,14 +116,8 @@ class Client
 
             $this->getChannel()->send($template);
             return true;
-        } catch (MessageNotificationException $exception) {
-            $this->errorMessage = $exception->getMessage();
-            return false;
+        } catch (\Throwable $throwable) {
+            throw new MessageNotificationException($throwable->getMessage());
         }
-    }
-
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
     }
 }

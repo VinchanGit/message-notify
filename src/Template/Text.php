@@ -56,7 +56,7 @@ class Text extends AbstractTemplate
         $at = $this->getAt();
         $result = '';
         foreach ($at as $item) {
-            if (strchr($item, '@') === false) {
+            if (! str_contains($item, '@')) {
                 $result .= '<at phone="' . $item . '">' . $item . '</at>';
             } else {
                 $result .= '<at email="' . $item . '">' . $item . '</at>';

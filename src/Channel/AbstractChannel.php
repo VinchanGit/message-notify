@@ -8,6 +8,7 @@ use Hyperf\Context\ApplicationContext;
 use Hyperf\Contract\ConfigInterface;
 use MessageNotify\Exceptions\MessageNotificationException;
 use MessageNotify\Template\AbstractTemplate;
+
 use function Hyperf\Support\make;
 
 abstract class AbstractChannel
@@ -15,9 +16,7 @@ abstract class AbstractChannel
     public function getConfig()
     {
         if (class_exists(ApplicationContext::class)) {
-            $configContext = make(ConfigInterface::class);
-
-            return $configContext->get('message.channels.' . get_class($this));
+            return make(ConfigInterface::class)->get('message.channels.' . get_class($this));
         }
 
         throw new MessageNotificationException('ApplicationContext is not exist');
