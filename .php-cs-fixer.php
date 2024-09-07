@@ -1,8 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+
 $header = '';
 
-return (new \PhpCsFixer\Config())
+return (new Config())
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR2' => true,
@@ -75,11 +80,10 @@ return (new \PhpCsFixer\Config())
         'multiline_comment_opening_closing' => true,
     ])
     ->setFinder(
-        \PhpCsFixer\Finder::create()
+        Finder::create()
             ->exclude('public')
             ->exclude('runtime')
             ->exclude('vendor')
             ->in(__DIR__)
     )
-    ->setUsingCache(false)
-    ;
+    ->setUsingCache(false);

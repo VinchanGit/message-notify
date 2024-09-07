@@ -102,16 +102,13 @@ class Client
         return $this;
     }
 
-    /**
-     * @Created By: coderzhao
-     * @Created At: 2024/9/5 下午2:19
-     * @Desc:send
-     */
     public function send(): bool
     {
         try {
-            $template = $this->getTemplate()->setAt($this->getAt())
-                ->setTitle($this->getTitle())->setText($this->getText())
+            $template = $this->getTemplate()
+                ->setAt($this->getAt())
+                ->setTitle($this->getTitle())
+                ->setText($this->getText())
                 ->setPipeline($this->getPipeline());
 
             $this->getChannel()->send($template);
