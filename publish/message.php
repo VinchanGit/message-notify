@@ -8,6 +8,8 @@ use MessageNotify\Channel\MailChannel;
 use MessageNotify\Channel\WechatChannel;
 use MessageNotify\Contracts\MessageNotifyInterface;
 
+use function Hyperf\Support\env;
+
 return [
     'default' => env('NOTIFY_DEFAULT_CHANNEL', 'mail'),
     'channels' => [
