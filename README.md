@@ -1,4 +1,3 @@
-
 ## 消息通知组件
 
 ## 功能
@@ -46,6 +45,7 @@ Notify::make()->setChannel(DingTalkChannel::class)
 | 钉钉群   | \MessageNotify\Channel\DingTalkChannel | Text、Markdown |
 | 飞书群   | \MessageNotify\Channel\FeiShuChannel   | Text、Markdown |
 | 企业微信群 | \MessageNotify\Channel\WechatChannel   | Text、Markdown |
+| 邮件    | \MessageNotify\Channel\MailChannel     | Text、Markdown |
 
 ## 格式
 
