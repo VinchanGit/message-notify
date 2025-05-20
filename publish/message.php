@@ -1,7 +1,9 @@
 <?php
 
 declare(strict_types=1);
-
+/**
+ * Copyright (c) The Vinchan , Distributed under the software license
+ */
 use MessageNotify\Channel\DingTalkChannel;
 use MessageNotify\Channel\FeiShuChannel;
 use MessageNotify\Channel\MailChannel;
@@ -49,7 +51,7 @@ return [
             'default' => MessageNotifyInterface::INFO,
             'pipeline' => [
                 'info' => [
-                    'dsn' => env('NOTIFY_MAIL_DSN'),
+                    'dsn' => env('NOTIFY_MAIL_DSN'), // SMTP连接字符串，例如：smtp://user:pass@smtp.example.com:587
                     'from' => env('NOTIFY_MAIL_FROM'),
                     'to' => env('NOTIFY_MAIL_TO'),
                 ],

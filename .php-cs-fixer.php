@@ -5,7 +5,9 @@ declare(strict_types=1);
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
-$header = '';
+$header = <<<'EOF'
+Copyright (c) The Vinchan , Distributed under the software license
+EOF;
 
 return (new Config())
     ->setRiskyAllowed(true)
